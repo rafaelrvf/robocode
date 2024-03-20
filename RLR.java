@@ -9,7 +9,7 @@ public class RLR extends RateControlRobot {
      * run: executado quando o round for iniciado
      */
     public void run() {
-		setColors(Color.white,Color.white,Color.white,Color.white,Color.white);
+		setColors(Color.darkGray,Color.black,Color.lightGray,Color.white,Color.white);
         
         // Definindo posição inicial e direção do robo
         setAdjustGunForRobotTurn(true);
@@ -18,7 +18,7 @@ public class RLR extends RateControlRobot {
 
         // Dando vida ao robo em um loop infinito
         while (true) {
-            setVelocityRate(5);
+            setVelocityRate(1);
             setTurnRateRadians(0);
             execute();
             turnRadarRight(360);
@@ -72,8 +72,8 @@ public class RLR extends RateControlRobot {
     public void onHitByBullet(HitByBulletEvent e) {
         double giroDoRadar = normalRelativeAngleDegrees(e.getBearing() + getHeading() - getRadarHeading());
         setTurnRadarRight(giroDoRadar);
-        setTurnLeft(-3);
-        setTurnRate(3);
+        setTurnLeft(-1);
+        setTurnRate(1);
         setVelocityRate(-1 * getVelocityRate());
     }
     /**
@@ -81,7 +81,7 @@ public class RLR extends RateControlRobot {
      */
     public void onHitWall(HitWallEvent e) {
         setVelocityRate(-1 * getVelocityRate());
-        setTurnRate(getTurnRate() + 2);
+        setTurnRate(getTurnRate() + 1);
         execute();
     }
     /**
@@ -90,8 +90,8 @@ public class RLR extends RateControlRobot {
     public void onHitRobot(HitRobotEvent e) {
         double giroDoCanhao = normalRelativeAngleDegrees(e.getBearing() + getHeading() - getGunHeading());
         turnGunRight(giroDoCanhao);
-        setFire(3);
-        setVelocityRate(getVelocity() + 3);
+        setFire(1);
+        setVelocityRate(getVelocity() + 1);
         execute();
     }
 
